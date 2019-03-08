@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>My main page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" th:href="@{/webjars/boostrap/4.3.1/css/boostrap.min.css}"/>-->
+    <!--//ładowanie css przez atrybut href , webjars zostaną automatycznie ustawione pod tym adresem-->
+
+    <!--<script th:src="@{/webjars/jquery/3.3.1-2/jquery.min.js}"></script>-->
+    <!--<script th:src="@{/webjars/boostrap/4.3.1/js/boostrap.min.js}"></script>-->
+
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!--//podajemy namiary na nasze pliki skryptowe-->
+
+</head>
+<body>
+<div class="container">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <!--<li class="breadcrumb-item"><a href="/products">Products</a></li>-->
+            <!--<li class="breadcrumb-item"><a href="#">Library</a></li>-->
+            <li class="breadcrumb-item active" aria-current="page">Products</li>
+        </ol>
+    </nav>
+
+    <div style="display: none" id="errors" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div style="display: none" class="first-elem"><strong>Pierwszy</strong></div>
+        <div style="display: none" class="last-elem"><strong>Ostatni</strong></div>
+    </div>
+
+    <!--<div th:if="${show}" th:text="fdvfdbvdfbdfb" th:class="${'alert ' + alertClass}"/>-->
+    <!-- wszystko w tym divie jest obsługiwane przez boostrapo-->
+    <table class="table">
+        <!-- ustawiamy boostrapową tabele-->
+        <thead>
+        <!--<tr>Nazwa produktu</tr>-->
+        <tr>
+            <td>Nazwa produktu</td>
+
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}") th:class="${'elem-'+product.idSort}">
+            <td th:text="${product.name}"></td>
+            <td>
+                <a id="setFirst" class="btn btn-primary" th:href="${'/move/'+product.id+'?oper='+1}" role="button">Do samej góry </a>
+            </td>
+            <td>
+                <a id="setUp" class="btn btn-primary" th:href="${'/move/'+product.id+'?oper='+2}" role="button">Do góry</a>
+            </td>
+            <td>
+                <a id="setDown" class="btn btn-primary" th:href="${'/move/'+product.id+'?oper='+3}" role="button">Do dołu</a>
+            </td>
+            <td>
+                <a id="setLast" class="btn btn-primary" th:href="${'/move/'+product.id+'?oper='+4}" role="button">Na sam dół</a>
+            </td>
+            <td><a th:href="${'/product?id='+product.id}">Podgląd</a></td>
+            <td th:text="${product.idSort}"></td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <div>
+        <!--<button type="submit" class="btn btn-warning"><a href="/productsadd">Utwórz produkt</a></button>-->
+        <a class="btn btn-primary" href="/productsadd" role="button">Utwórz produkt</a>
+    </div>
+
+</div>
+</body>
+</html>
+
+<script>
+
+    $(document).ready(function () {
+        $('#setFirst,#setLast,#setUp,#setDown').on('click', function (e) {
+            var errs = $('div#errors').children();
+            errs.hide();
+
+            var closest = $(this).closest('tr').attr('class');
+            var first = $(this).closest('tbody').find(">:first-child").attr('class');
+            var last = $(this).closest('tbody').find(">:last-child").attr('class');
+
+            if (closest === first && ($(this).attr('id') === 'setFirst' || $(this).attr('id') === 'setUp')) {
+                console.log('first');
+                errs.parent().show();
+                errs.closest('div.first-elem').show();
+                e.preventDefault();
+            // } else if (closest === last && ($(this).attr('id') === 'setLast' || $(this).attr('id') === 'setDown')) {
+            //     console.log('last');
+            //     errs.parent().show();
+            //     errs.closest('div.last-elem').show();
+            //     e.preventDefault();
+            } else {
+                errs.parent().hide();
+            }
+        });
+    })
+</script>
+<!--
+
+  <form class="form-horizontal"  th:action="@{'/move/'+${product.id}+'?oper='+1}" th:method="PUT">
+                    <div class="row">
+                        <button type="submit" class="btn btn-default">Na samą górę</button>
+                    </div>
+                </form>
+-->

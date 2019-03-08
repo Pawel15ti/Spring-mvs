@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Product Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
+    <!--<link rel="stylesheet" th:href="@{/webjars/boostrap/4.3.1/css/boostrap.min.css}"/>-->
+    <!--//ładowanie css przez atrybut href , webjars zostaną automatycznie ustawione pod tym adresem-->
+
+    <!--<script th:src="@{/webjars/jquery/3.3.1-2/jquery.min.js}"></script>-->
+    <!--<script th:src="@{/webjars/boostrap/4.3.1/js/boostrap.min.js}"></script>-->
+
+    <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!--//podajemy namiary na nasze pliki skryptowe-->
+
+</head>
+<body>
+<div class="container">
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/products">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Show_product</li>
+        </ol>
+    </nav>
+
+    <p th:if="${product} != null" >
+    <p th:text="${product.getId()}"></p>
+    <p th:text="${product.getName()}"></p>
+    <p th:text="${product.getIdSort()}"></p>
+    </p>
+</div>
+</body>
+</html>
