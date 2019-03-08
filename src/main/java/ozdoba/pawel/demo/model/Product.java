@@ -19,10 +19,11 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-@Transient
+    @Transient
     private Long idSort;
     @NotNull
-    @Size(min = 1, max = 100 , message = "Nazwa produktu musi miec co najmniej 1 znak i nie może przekroczyć 100 znaków")//, message = "cos"
+    @Size(min = 1, max = 100, message = "Nazwa produktu musi miec co najmniej 1 znak i nie może przekroczyć 100 znaków")
+//, message = "cos"
 //    @Range
     private String name;
 

@@ -10,4 +10,6 @@ public interface CrudProduct<T, Id> {
     T findById(Id id);
     List<T> saveAll(List<Id> object);
     T save(Id object);
+    void delete(T object);
+    void deleteById(Id id);
 }

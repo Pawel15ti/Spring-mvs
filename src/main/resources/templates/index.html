@@ -6,16 +6,10 @@
 
     <link rel="stylesheet"
           href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>
-    <!--<link rel="stylesheet" th:href="@{/webjars/boostrap/4.3.1/css/boostrap.min.css}"/>-->
-    <!--//ładowanie css przez atrybut href , webjars zostaną automatycznie ustawione pod tym adresem-->
-
-    <!--<script th:src="@{/webjars/jquery/3.3.1-2/jquery.min.js}"></script>-->
-    <!--<script th:src="@{/webjars/boostrap/4.3.1/js/boostrap.min.js}"></script>-->
 
     <script src="/webjars/jquery/3.3.1-2/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <!--//podajemy namiary na nasze pliki skryptowe-->
 
 </head>
 <body>
@@ -23,8 +17,6 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <!--<li class="breadcrumb-item"><a href="/products">Products</a></li>-->
-            <!--<li class="breadcrumb-item"><a href="#">Library</a></li>-->
             <li class="breadcrumb-item active" aria-current="page">Products</li>
         </ol>
     </nav>
@@ -34,15 +26,11 @@
         <div style="display: none" class="last-elem"><strong>Ostatni</strong></div>
     </div>
 
-    <!--<div th:if="${show}" th:text="fdvfdbvdfbdfb" th:class="${'alert ' + alertClass}"/>-->
-    <!-- wszystko w tym divie jest obsługiwane przez boostrapo-->
     <table class="table">
-        <!-- ustawiamy boostrapową tabele-->
+
         <thead>
-        <!--<tr>Nazwa produktu</tr>-->
         <tr>
             <td>Nazwa produktu</td>
-
         </tr>
 
         </thead>
@@ -65,13 +53,12 @@
             <td th:text="${product.idSort}"></td>
 
         </tr>
-
         </tbody>
-
     </table>
-
+    <p class="text-danger">
+    <td class="text-decoration-none" th:text="${message}"></td>
+    </p>
     <div>
-        <!--<button type="submit" class="btn btn-warning"><a href="/productsadd">Utwórz produkt</a></button>-->
         <a class="btn btn-primary" href="/productsadd" role="button">Utwórz produkt</a>
     </div>
 

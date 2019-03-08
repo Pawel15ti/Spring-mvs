@@ -6,12 +6,12 @@ import ozdoba.pawel.demo.model.Product;
 
 import java.util.List;
 
-public interface ProductRepository extends CrudRepository<Product, Long> {
+public interface ProductRepository extends JpaRepository<Product, Long> {//<Product, Long>
 
-    Product findFirstByIdSortLessThanOrderByIdSortDesc(Long idSort);// znajdz pierwszy mniejszy od aktualnego dla operaz w góre
-    Product findFirstByIdSortGreaterThanOrderByIdSortAsc(Long idSort);// znajdz pierwszy większy od aktualnego dla operaz w dół
-    Product findFirstByOrderByIdSortAsc();// znajdz ostatni element od aktualnego dla operaz na samą górę
-    Product findFirstByOrderByIdSortDesc();// znajdz pierwszy element od aktualnego dla operaz na sam dół
+    Product findFirstByIdSortLessThanOrderByIdSortDesc(Long idSort);// znajdz pierwszy mniejszy od aktualnego dla operacji w góre
+    Product findFirstByIdSortGreaterThanOrderByIdSortAsc(Long idSort);// znajdz pierwszy większy od aktualnego dla operacji w dół
+    Product findFirstByOrderByIdSortAsc();// znajdz ostatni element od aktualnego dla operacji na samą górę
+    Product findFirstByOrderByIdSortDesc();// znajdz pierwszy element od aktualnego dla operacji na sam dół
     List<Product> findByIdSortLessThanAndIdSortGreaterThanEqual(Long first, Long Last);// te elementy którym będę zwiększał idSort ++ z findFirstByOrderByIdSortAsc
     List<Product> findByIdSortGreaterThanAndIdSortLessThanEqual(Long first, Long Last);// te elementy którym będę zmniejszał idSort -- z findFirstByOrderByIdSortDesc
 

@@ -27,8 +27,10 @@
             <li class="breadcrumb-item active" aria-current="page">Show_product</li>
         </ol>
     </nav>
+    <p class="text-danger">
+    <td class="text-decoration-none" th:text="${message}"></td>
+    </p>
 
-    <p th:if="${product} != null" >
     <p th:text="${product.getId()}"></p>
     <p th:text="${product.getName()}"></p>
     <p th:text="${product.getIdSort()}"></p>
