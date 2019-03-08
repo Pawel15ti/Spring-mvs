@@ -1,11 +1,12 @@
 package ozdoba.pawel.demo.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 import ozdoba.pawel.demo.model.Product;
 
 import java.util.List;
 
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface ProductRepository extends CrudRepository<Product, Long> {
 
     Product findFirstByIdSortLessThanOrderByIdSortDesc(Long idSort);// znajdz pierwszy mniejszy od aktualnego dla operaz w góre
     Product findFirstByIdSortGreaterThanOrderByIdSortAsc(Long idSort);// znajdz pierwszy większy od aktualnego dla operaz w dół

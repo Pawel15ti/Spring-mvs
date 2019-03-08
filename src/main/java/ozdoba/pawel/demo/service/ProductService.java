@@ -21,7 +21,7 @@ public class ProductService implements Comparator<Product> {
 
     //    @PostConstruct
     public List<Product> getProducts1() {
-        productList = new LinkedList<>(productRepository.findAll());
+        productList = new LinkedList<Product>(productRepository.findAll());
         productList.stream().filter(s -> s.getIdSort() == null).map(s -> setIdSort(s)).collect(Collectors.toList());
         productRepository.saveAll(productList);
         Collections.sort(productList, Comparator.comparing(Product::getIdSort).thenComparing(Product::getId));
